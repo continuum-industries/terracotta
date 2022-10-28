@@ -190,7 +190,7 @@ class RelationalMetaStore(MetaStore, ABC):
     def create(self, keys: Sequence[str], key_descriptions: Mapping[str, str] = None) -> None:
         """Create and initialize database with empty tables.
 
-        This must be called before opening the first connection. The database must not
+        This must be called before opening the first connection. The database may
         exist already.
 
         Arguments:
@@ -200,7 +200,10 @@ class RelationalMetaStore(MetaStore, ABC):
                 in the form of ``{key_name: description}``.
 
         """
-        self._create_database()
+        try:
+            self._create_database()
+        except Exception as e:
+            pass
         self._initialize_database(keys, key_descriptions)
 
     @abstractmethod
