@@ -63,7 +63,7 @@ setup(
         'click-spinner',
         'flask',
         'flask_cors',
-        'marshmallow>=3.0.0',
+        'marshmallow>=3.0.0,<4.0',
         'mercantile',
         'numpy%s' % numpy_version,
         'pillow',
